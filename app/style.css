@@ -1,0 +1,324 @@
+/* Vice City Sunset — editor theme. Dark dusk background, sunset accents,
+   bundled fonts (Oswald for display lettering, Inter for the interface). */
+
+@font-face {
+  font-family: 'Oswald';
+  src: url('fonts/Oswald.ttf') format('truetype');
+  font-weight: 200 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('fonts/Inter.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --dusk: #14060f;
+  --panel: #221028;
+  --panel-edge: #3d1b4d;
+  --ink: #fff4ec;
+  --muted: #c9a8c2;
+  --sunset: #ff5e3a;
+  --neon: #ff2e88;
+  --gold: #ff9a3d;
+  --violet: #b537f2;
+  --focus: #ffb35c;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--dusk);
+  color: var(--ink);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.app-header {
+  padding: 20px 24px 8px;
+  background: linear-gradient(100deg, #ff3d00 0%, #ff2e63 45%, #7b2ff7 100%);
+}
+
+.app-header h1 {
+  margin: 0;
+  font-family: 'Oswald', 'Arial Narrow', sans-serif;
+  font-size: 44px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  line-height: 1;
+  text-shadow: 0 2px 0 rgba(20, 5, 20, 0.55);
+}
+
+.tagline {
+  margin: 6px 0 10px;
+  color: #ffe9d6;
+  font-size: 15px;
+}
+
+.editor {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 1fr);
+  gap: 24px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 20px 24px;
+}
+
+.preview-pane {
+  min-width: 0;
+}
+
+#coverCanvas {
+  display: block;
+  width: 100%;
+  max-width: 640px;
+  height: auto;
+  margin: 0 auto;
+  border: 1px solid var(--panel-edge);
+  border-radius: 10px;
+  background: #241031;
+  cursor: grab;
+  touch-action: none;
+}
+
+#coverCanvas:active {
+  cursor: grabbing;
+}
+
+#coverCanvas:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.hint {
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.status {
+  text-align: center;
+  color: var(--gold);
+  font-size: 14px;
+  min-height: 1.5em;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-width: 0;
+}
+
+.control-group {
+  background: var(--panel);
+  border: 1px solid var(--panel-edge);
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+
+.control-group h2 {
+  margin: 0 0 10px;
+  font-family: 'Oswald', 'Arial Narrow', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.small {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.drop-zone {
+  border: 2px dashed var(--neon);
+  border-radius: 8px;
+  padding: 18px;
+  text-align: center;
+  cursor: pointer;
+  background: rgba(255, 46, 136, 0.06);
+}
+
+.drop-zone.dragging {
+  background: rgba(255, 46, 136, 0.22);
+  border-color: var(--gold);
+}
+
+.drop-zone p {
+  margin: 4px 0;
+}
+
+#photoInput {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.button-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+button {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  background: linear-gradient(120deg, var(--sunset), var(--neon));
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  filter: brightness(1.15);
+}
+
+.export-row button {
+  flex: 1;
+  min-width: 100px;
+  line-height: 1.35;
+}
+
+.layout-picker {
+  border: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.layout-picker label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+input[type="radio"] {
+  accent-color: var(--neon);
+  width: 18px;
+  height: 18px;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px 12px;
+  font-family: 'Oswald', 'Arial Narrow', sans-serif;
+  font-size: 20px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: #170a1e;
+  border: 1px solid var(--panel-edge);
+  border-radius: 8px;
+}
+
+input[type="range"] {
+  width: 100%;
+  accent-color: var(--neon);
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.shortcuts ul {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+kbd {
+  background: #170a1e;
+  border: 1px solid var(--panel-edge);
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  padding: 1px 6px;
+  font-family: inherit;
+  color: var(--ink);
+}
+
+.app-footer {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px 28px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Cover-only scene (?shot=cover): just the cover, full-bleed. */
+body.cover-only {
+  background: #000;
+}
+
+body.cover-only .app-header,
+body.cover-only .controls,
+body.cover-only .app-footer,
+body.cover-only .hint,
+body.cover-only .status {
+  display: none;
+}
+
+body.cover-only .editor {
+  display: block;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+body.cover-only .preview-pane {
+  margin: 0;
+}
+
+body.cover-only #coverCanvas {
+  width: 100vw;
+  height: 100vh;
+  max-width: none;
+  border: none;
+  border-radius: 0;
+}
+
+@media (max-width: 820px) {
+  .editor {
+    grid-template-columns: 1fr;
+  }
+
+  .app-header h1 {
+    font-size: 34px;
+  }
+}

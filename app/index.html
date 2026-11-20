@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice City Sunset — GTA 6 Cover Art Maker</title>
+<meta name="description" content="Turn any photo and a caption into GTA 6-style cover art, offline in your browser, and export it as a PNG.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="app-header">
+  <h1>Vice City Sunset</h1>
+  <p class="tagline">GTA 6 Cover Art Maker — your photo, a bold caption, a neon sunset. Everything runs on your machine.</p>
+</header>
+
+<main class="editor">
+  <section class="preview-pane" aria-label="Cover preview">
+    <canvas id="coverCanvas" width="880" height="880" tabindex="0"
+      aria-label="Cover preview. Drag inside a panel to move the photo, use the mouse wheel or the zoom slider to zoom, and the arrow keys to nudge the framing."></canvas>
+    <p class="hint">Drag a panel to move the photo &middot; scroll to zoom &middot; arrow keys nudge &middot; <strong>+</strong>/<strong>&minus;</strong> zoom the active panel</p>
+    <p class="status" id="statusLine" role="status">Loading a demo photo&hellip;</p>
+  </section>
+
+  <aside class="controls" aria-label="Cover controls">
+    <section class="control-group">
+      <h2>1 &middot; Your photo</h2>
+      <div class="drop-zone" id="dropZone" tabindex="0" role="button" aria-label="Choose a photo file">
+        <p>Drop a photo here, or click to choose one.</p>
+        <p class="small">JPG or PNG, read on your machine &mdash; never uploaded.</p>
+        <input type="file" id="photoInput" accept="image/*" aria-label="Choose a photo file">
+      </div>
+      <p class="small">No photo handy? Try a demo:</p>
+      <div class="button-row">
+        <button type="button" data-sample="boulevard">Boulevard</button>
+        <button type="button" data-sample="pier">Pier</button>
+      </div>
+    </section>
+
+    <section class="control-group">
+      <h2>2 &middot; Layout</h2>
+      <fieldset class="layout-picker">
+        <legend class="visually-hidden">Cover layout</legend>
+        <label><input type="radio" name="layout" value="hero" checked> Wide hero</label>
+        <label><input type="radio" name="layout" value="strips"> Strips</label>
+        <label><input type="radio" name="layout" value="grid"> Grid</label>
+      </fieldset>
+      <p class="small">Each panel keeps its own framing: drag, scroll or use the slider below.</p>
+      <label for="zoomSlider" id="zoomLabel">Zoom &mdash; panel 1 of 1 (100%)</label>
+      <input type="range" id="zoomSlider" min="1" max="3.5" step="0.05" value="1">
+    </section>
+
+    <section class="control-group">
+      <h2>3 &middot; Caption</h2>
+      <label for="captionInput">Caption text</label>
+      <input type="text" id="captionInput" value="SUNSET HEIST" maxlength="40" autocomplete="off">
+    </section>
+
+    <section class="control-group">
+      <h2>4 &middot; Export PNG</h2>
+      <div class="button-row export-row">
+        <button type="button" data-export="1080x1080">Square<br>1080 &times; 1080</button>
+        <button type="button" data-export="1080x1350">Portrait<br>1080 &times; 1350</button>
+        <button type="button" data-export="1920x1080">Wide<br>1920 &times; 1080</button>
+      </div>
+      <p class="small">Exports download a real PNG you can post anywhere.</p>
+    </section>
+
+    <section class="control-group shortcuts">
+      <h2>Keyboard shortcuts</h2>
+      <ul>
+        <li><kbd>&larr;</kbd> <kbd>&rarr;</kbd> <kbd>&uarr;</kbd> <kbd>&darr;</kbd> nudge the active panel</li>
+        <li><kbd>Shift</kbd> + arrows nudges further</li>
+        <li><kbd>+</kbd> / <kbd>&minus;</kbd> zoom the active panel</li>
+        <li><kbd>Tab</kbd> moves between the controls</li>
+      </ul>
+    </section>
+  </aside>
+</main>
+
+<footer class="app-footer">
+  <p>Vice City Sunset runs entirely in your browser. Your photos never leave this machine, and the app makes no network requests. Fonts: Oswald and Inter, SIL Open Font License. An original design in the style of GTA 6 posters — no Rockstar logo, artwork or font.</p>
+</footer>
+
+<script src="src/cover.js"></script>
+<script src="src/main.js"></script>
+<script src="src/shots.js"></script>
+</body>
+</html>
